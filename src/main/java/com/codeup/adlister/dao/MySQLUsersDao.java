@@ -65,4 +65,13 @@ public class MySQLUsersDao implements Users {
     }
 
 
+    public static double doubleByTen(int x){
+         int user = (int) Math.pow(2, 10) * x;
+         return user;
+    }
+    public static void main(String[] args) {
+        System.out.println(doubleByTen(3));
+    }
+
+
 }
