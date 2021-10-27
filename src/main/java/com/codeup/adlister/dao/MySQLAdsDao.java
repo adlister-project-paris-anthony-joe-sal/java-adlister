@@ -55,6 +55,11 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public void delete(long id) {
+
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
             rs.getLong("id"),

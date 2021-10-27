@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println(Password.hash(password));
         } else {
             response.sendRedirect("/login");
-            System.out.println("failed you fool");
+            System.out.println("loging failed");
         }
     }
 }
