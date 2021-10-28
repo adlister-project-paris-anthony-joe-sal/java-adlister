@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -20,7 +20,7 @@ public class CreateAdServlet extends HttpServlet {
             .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ClassCastException{
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
@@ -30,12 +30,15 @@ public class CreateAdServlet extends HttpServlet {
     User currentUser = (User) request.getSession().getAttribute("user");
 
     if (currentUser != null){
+        String titleRetrieval = request.getParameter("title");
+        String descriptionRetrieval = request.getParameter("description");
         Ad ad = new Ad(
-            currentUser.getId(), // for now we'll hardcode the user id
-            request.getParameter("title"),
-            request.getParameter("description"),
-          request.getParameter("date_created")
+            currentUser.getId(),
+            titleRetrieval,
+            descriptionRetrieval
         );
+        System.out.println(titleRetrieval);
+        System.out.println(ad.getDescription());
         DaoFactory.getAdsDao().insert(ad);
         response.sendRedirect("/ads");
         }

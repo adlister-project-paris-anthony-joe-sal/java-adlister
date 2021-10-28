@@ -8,16 +8,17 @@ DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-   username VARCHAR(240) NOT NULL,
-   first_name VARCHAR(60),
-   last_name VARCHAR(60),
-   email VARCHAR(240) NOT NULL,
-   password VARCHAR(255) NOT NULL,
-   zip_code INT NOT NULL,
-   phone_number INT NOT NULL,
-   is_logged_in BOOLEAN,
-   PRIMARY KEY (id)
+
+                       id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                       username VARCHAR(240) NOT NULL,
+                       first_name VARCHAR(60),
+                       last_name VARCHAR(60),
+                       email VARCHAR(240) NOT NULL,
+                       password VARCHAR(255) NOT NULL,
+                       zip_code INT NOT NULL,
+                       phone_number INT NOT NULL,
+                       PRIMARY KEY (id)
+
 );
 
 CREATE TABLE ads (

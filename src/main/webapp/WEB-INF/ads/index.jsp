@@ -11,7 +11,9 @@
 
 <div class="container">
     <h1>Here Are all the ads!</h1>
-
+    <div style="text-align: right">
+    <jsp:include page="/WEB-INF/partials/filter.jsp" />
+    </div>
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
 
