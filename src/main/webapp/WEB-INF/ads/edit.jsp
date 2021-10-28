@@ -15,9 +15,9 @@
 <body>
 
     <h1>Update Ad</h1>
-<form method="POST">
+<form method="POST" action="/edit">
     <div>
-        <label action="/edit" for="newTitle">Title</label>
+        <label  for="newTitle">Title</label>
         <input type="text" id="newTitle" name="title" >
     </div>
     <div>
