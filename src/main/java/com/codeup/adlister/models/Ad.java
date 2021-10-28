@@ -1,22 +1,28 @@
 package com.codeup.adlister.models;
+import java.text.DateFormat;
+import java.sql.Date;
 
 public class Ad {
     private long id;
     private long userId;
     private String title;
     private String description;
+    private Date date_created;
 
-    public Ad(long id, long userId, String title, String description) {
+
+    public Ad(long id, long userId, String title, String description, Date date_created) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.date_created = date_created;
     }
 
-    public Ad(long userId, String title, String description) {
+    public Ad(long userId, String title, String description, Date date_created) {
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.date_created = date_created;
     }
 
     public long getId() {
@@ -29,6 +35,12 @@ public class Ad {
 
     public long getUserId() {
         return userId;
+    }
+
+    public Date getDate(){return date_created;}
+
+    public void setDate(Date date_created) {
+        this.date_created = date_created;
     }
 
     public void setUserId(long userId) {

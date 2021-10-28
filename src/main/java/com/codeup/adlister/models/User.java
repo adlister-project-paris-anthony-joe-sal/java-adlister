@@ -5,20 +5,42 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private long zip_code;
+    private long phone_number;
+
+    public long getZip_code() {
+        return zip_code;
+    }
+
+    public void setZip_code(long zip_code) {
+        this.zip_code = zip_code;
+    }
+
+    public long getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(long phone_number) {
+        this.phone_number = phone_number;
+    }
 
     public User() {}
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, long zip_code , long phone_number) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.zip_code = zip_code;
+        this.phone_number = phone_number;
     }
 
-    public User(long id, String username, String email, String password) {
+    public User(long id, String username, String email, String password, long zip_code, long phone_number) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.zip_code = zip_code;
+        this.phone_number = phone_number;
     }
 
     public long getId() {

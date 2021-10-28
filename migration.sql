@@ -16,7 +16,6 @@ CREATE TABLE users (
                        password VARCHAR(255) NOT NULL,
                        zip_code INT NOT NULL,
                        phone_number INT NOT NULL,
-                       is_logged_in BOOLEAN,
                        PRIMARY KEY (id)
 );
 

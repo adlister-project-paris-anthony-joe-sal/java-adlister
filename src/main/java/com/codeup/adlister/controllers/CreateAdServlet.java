@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -19,7 +20,7 @@ public class CreateAdServlet extends HttpServlet {
             .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ClassCastException{
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
@@ -30,9 +31,10 @@ public class CreateAdServlet extends HttpServlet {
 
     if (currentUser != null){
         Ad ad = new Ad(
-            currentUser.getId(), // for now we'll hardcode the user id
+            currentUser.getId(),
             request.getParameter("title"),
-            request.getParameter("description")
+            request.getParameter("description"),
+                (java.sql.Date) new Date()
         );
         DaoFactory.getAdsDao().insert(ad);
         response.sendRedirect("/ads");
