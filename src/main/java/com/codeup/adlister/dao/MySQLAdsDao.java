@@ -41,11 +41,12 @@ public class MySQLAdsDao implements Ads {
     @Override
     public Long insert(Ad ad) {
         try {
-            String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO ads(user_id, title, description, date_created) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
+            stmt.setDate(4, (Date) ad.getDate());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -62,7 +63,8 @@ public class MySQLAdsDao implements Ads {
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
-            rs.getString("description")
+            rs.getString("description"),
+            rs.getDate("date_created")
         );
     }
 
@@ -73,4 +75,22 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+
+    @Override
+    public void edit(int id, Ad newAd) {
+        try {
+            String editQuery = "UPDATE ads SET title = ?, description = ?, date_created = ?, adlister_db.categories.name = ? WHERE id = ?";
+            PreparedStatement stmt = connection.prepareStatement(editQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, newAd.getTitle());
+            stmt.setString(2, newAd.getDescription());
+            stmt.setDate(3, (Date) newAd.getDate_created());
+            stmt.setString(4, newAd.getCategory());
+            stmt.setInt(5, id);
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            throw new RuntimeException("Error editing ad. ", e);
+        }
+    }
+
 }

@@ -11,12 +11,21 @@
 
 <div class="container">
     <h1>Here Are all the ads!</h1>
-
+    <div style="text-align: right">
+    <jsp:include page="/WEB-INF/partials/filter.jsp" />
+    </div>
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
-             <h2>${ad.title}</h2>
-             <h3>${ad.userId}</h3>
-             <p>${ad.description}</p>
+
+            <c:if test="${sessionScope.userId != null}">
+                <form method="GET" action="<c:url value="/edit"/>">
+                    <button type="submit">Edit this ad</button>
+                    <input type="hidden" value="${ad.id}" name="editAd" id="editAd">
+                </form>
+            </c:if>
+            <h2>${ad.title}</h2>
+            <h3>${ad.userId}</h3>
+            <p>${ad.description}</p>
         </div>
     </c:forEach>
 </div>
