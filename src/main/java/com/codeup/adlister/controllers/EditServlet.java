@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @WebServlet("/edit")
@@ -32,14 +33,14 @@ public class EditServlet extends HttpServlet {
         int currAd = (int) session.getAttribute("currentAd");
         String newTitle = request.getParameter("newTitle");
         String newDescription = request.getParameter("newDescription");
-        Date date_created = (Date) session.getAttribute("date_created");
+        Timestamp date_created = (Timestamp) session.getAttribute("date_created");
         String newCategory = request.getParameter("newCategory");
         long currentUserId = (long) session.getAttribute("userId");
         Ad newAd = new Ad(
                 currentUserId,
                 newTitle,
                 newDescription,
-                (java.sql.Date) date_created,
+                date_created,
                 newCategory
         );
         DaoFactory.getAdsDao().edit(currAd, newAd);

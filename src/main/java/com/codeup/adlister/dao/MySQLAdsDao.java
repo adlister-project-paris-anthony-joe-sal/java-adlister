@@ -43,7 +43,7 @@ public class MySQLAdsDao implements Ads {
             stmt.setLong(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
-            stmt.setDate(4, (Date) ad.getDate());
+            stmt.setTimestamp(4, ad.getDate());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -52,6 +52,7 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error creating a new ad.", e);
         }
     }
+
 
     @Override
     public void delete(String id) {
@@ -66,13 +67,16 @@ public class MySQLAdsDao implements Ads {
     }
 
 
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
-                rs.getLong("id"),
-                rs.getLong("user_id"),
-                rs.getString("title"),
-                rs.getString("description"),
-                rs.getDate("date_created")
+
+            rs.getLong("id"),
+            rs.getLong("user_id"),
+            rs.getString("title"),
+            rs.getString("description"),
+            rs.getTimestamp("date_created")
+
         );
     }
 
@@ -92,12 +96,36 @@ public class MySQLAdsDao implements Ads {
             PreparedStatement stmt = connection.prepareStatement(editQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, newAd.getTitle());
             stmt.setString(2, newAd.getDescription());
-            stmt.setDate(3, (Date) newAd.getDate_created());
+            stmt.setTimestamp(3, newAd.getDate_created());
             stmt.setString(4, newAd.getCategory());
             stmt.setInt(5, id);
             stmt.executeUpdate();
         } catch(SQLException e) {
             throw new RuntimeException("Error editing ad. ", e);
+        }
+    }
+
+    public List<Ad> sortAds() {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads ORDER BY date_created ASC");
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("Ads should be sorted now");
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    public List<Ad> sortAdsAscending() {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads ORDER BY date_created DESC");
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("Ads should be sorted now");
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
 

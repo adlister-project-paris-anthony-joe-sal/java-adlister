@@ -34,6 +34,7 @@
             <h2>${ad.title}</h2>
             <h3>${ad.userId}</h3>
             <p>${ad.description}</p>
+            <p>${ad.date_created}</p>
         </div>
     </c:forEach>
 </div>

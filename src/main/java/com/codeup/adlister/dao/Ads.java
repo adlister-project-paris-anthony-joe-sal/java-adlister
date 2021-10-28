@@ -12,4 +12,6 @@ public interface Ads {
 
     void delete(String id);
     void edit(int id, Ad newAd);
+    List<Ad> sortAds();
+    List<Ad> sortAdsAscending();
 }
