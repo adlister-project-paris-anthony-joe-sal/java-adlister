@@ -1,4 +1,5 @@
 package com.codeup.adlister.models;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.sql.Date;
 
@@ -9,11 +10,11 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
-    private Date date_created;
+    private Timestamp date_created;
     private String category;
 
 
-    public Ad(long id, long userId, String title, String description, Date date_created) {
+    public Ad(long id, long userId, String title, String description, Timestamp date_created) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -25,12 +26,14 @@ public class Ad {
         this.userId = userId;
         this.title = title;
         this.description = description;
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new Date(date.getTime());
-        this.date_created = sqlDate;
+//        java.util.Date date = new java.util.Date();
+//        java.sql.Date sqlDate = new Date(date.getTime());
+        Timestamp newDate = new java.sql.Timestamp(System.currentTimeMillis());
+//        java.sql.Date newDate = new Date(System.currentTimeMillis());
+        this.date_created = newDate;
     }
 
-    public Ad(long userId, String title, String description, Date date_created, String name) {
+    public Ad(long userId, String title, String description, Timestamp date_created, String name) {
 
         this.userId = userId;
         this.title = title;
@@ -53,9 +56,9 @@ public class Ad {
         return userId;
     }
 
-    public Date getDate(){return date_created;}
+    public Timestamp getDate(){return date_created;}
 
-    public void setDate(Date date_created) {
+    public void setDate(Timestamp date_created) {
         this.date_created = date_created;
     }
 
@@ -79,11 +82,11 @@ public class Ad {
         this.description = description;
     }
 
-    public Date getDate_created() {
+    public Timestamp getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(Date date_created) {
+    public void setDate_created(Timestamp date_created) {
         this.date_created = date_created;
     }
 
