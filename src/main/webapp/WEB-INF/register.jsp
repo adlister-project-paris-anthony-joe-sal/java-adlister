@@ -14,9 +14,20 @@
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control" type="text">
             </div>
+
+            <div class="form-group">
+                <label for="first_name">first_name</label>
+                <input id="first_name" name="first_name" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">last_name</label>
+                <input id="last_name" name="last_name" class="form-control" type="text">
+            </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text">
+                <input id="email" name="email" class="form-control" type="email">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -26,7 +37,27 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             </div>
-            <input type="submit" class="btn btn-primary btn-block">
+
+
+
+
+
+                    <div class="form-group">
+                        <label for="zip_code">zip_code</label>
+                        <input id="zip_code" name="zip_code" class="form-control" type="text">
+                    </div>
+
+                        <div class="form-group">
+                            <label for="phone_number">phone_number</label>
+                            <input id="phone_number" name="phone_number" class="form-control" type="text">
+                        </div>
+
+
+
+
+
+
+                            <input type="submit" class="btn btn-primary btn-block">
         </form>
     </div>
 </body>

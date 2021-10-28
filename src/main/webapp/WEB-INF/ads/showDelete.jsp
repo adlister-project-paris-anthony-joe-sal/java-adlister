@@ -22,10 +22,29 @@
 
 <div class="container">
     <div class="col-md-12">
-        <h1>${ad.title}</h1>
-        <p>${ad.description}</p>
+<%--        <h1>${ad.title}</h1>--%>
+<%--        <p>${ad.description}</p>--%>
+<%--        --%>
+
+    <h1>Here Are all the ads!</h1>
+
+    <c:forEach var="ad" items="${ads}">
+        <div class="col-md-6">
+            <h2>${ad.title}</h2>
+                             <h3>${ad.userId}</h3>
+            <p>${ad.description}</p>
+            <form action="/ads/delete" method="POST">
+                <input type="hidden" name="id" value="${ad.id}" />
+                <button  class="btn btn-danger">Delete</button>
+            </form>
+
+        </div>
+    </c:forEach>
+
+
+
         <p>Posted by: <b><a href="/profile?id=${user.id}" target="_blank">${user.username}</a></b></p>
-        <div class="admin-only">
+        <div >
             <button id="edit-ad" data-ad-id="${ad.id}" class="btn btn-info">Edit</button>
             <form action="/ads/delete" method="POST">
                 <input type="hidden" name="id" value="${ad.id}" />

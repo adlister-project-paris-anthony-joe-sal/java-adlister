@@ -17,11 +17,15 @@ package com.codeup.adlister.controllers;
 
 @WebServlet(name = "controlers.DeleteAdServlet", urlPatterns = "/ads/delete")
 public class DeleteAdServlet extends HttpServlet {
+
+    Ads dao = DaoFactory.getAdsDao();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+
+        request.getRequestDispatcher("/WEB-INF/ads/showDelete.jsp")
+                .forward(request, response);
     }
-    Ads dao = DaoFactory.getAdsDao();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));

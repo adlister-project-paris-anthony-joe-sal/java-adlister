@@ -10,8 +10,8 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
                        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
                        username VARCHAR(240) NOT NULL,
-                       first_name VARCHAR(60),
-                       last_name VARCHAR(60),
+                       first_name VARCHAR(240)NOT NULL,
+                       last_name VARCHAR(240)NOT NULL,
                        email VARCHAR(240) NOT NULL,
                        password VARCHAR(255) NOT NULL,
                        zip_code INT NOT NULL,
