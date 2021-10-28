@@ -39,7 +39,7 @@ public class EditServlet extends HttpServlet {
                 currentUserId,
                 newTitle,
                 newDescription,
-                date_created,
+                (java.sql.Date) date_created,
                 newCategory
         );
         DaoFactory.getAdsDao().edit(currAd, newAd);

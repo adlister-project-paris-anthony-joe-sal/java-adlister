@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -30,16 +30,15 @@ public class CreateAdServlet extends HttpServlet {
     User currentUser = (User) request.getSession().getAttribute("user");
 
     if (currentUser != null){
+        String titleRetrieval = request.getParameter("title");
+        String descriptionRetrieval = request.getParameter("description");
         Ad ad = new Ad(
             currentUser.getId(),
-            request.getParameter("title"),
-            request.getParameter("description"),
-<<<<<<< HEAD
-                (java.sql.Date) new Date()
-=======
-          request.getParameter("date_created")
->>>>>>> main
+            titleRetrieval,
+            descriptionRetrieval
         );
+        System.out.println(titleRetrieval);
+        System.out.println(ad.getDescription());
         DaoFactory.getAdsDao().insert(ad);
         response.sendRedirect("/ads");
         }
