@@ -67,6 +67,7 @@ public class MySQLAdsDao implements Ads {
     }
 
 
+
     @Override
     public Ad attainAdId(long id) {
         String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
@@ -82,6 +83,7 @@ public class MySQLAdsDao implements Ads {
         }
 
     }
+
 
 
     private Ad extractAd(ResultSet rs) throws SQLException {

@@ -11,14 +11,23 @@
     <div class="container">
         <h1>Welcome, ${user.username}!</h1>
 
-        <h1>Here Are all the ads!</h1>
+
+
+        <div style="text-align: right">
+            <jsp:include page="/WEB-INF/partials/filter.jsp" />
+        </div>
+
+        <h1>Here are all of YOUR ads!</h1>
+
 
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
 
+
                 <h2> ${ad.title}</h2>
                 <h3> ${ad.description}</h3>
                 <p >${ad.userId}</p>
+
 
                 <form action="/delete" method="POST">
                     <input type="hidden" name="deleteAd" id="deleteAd" value="${ad.id}" />
@@ -34,6 +43,16 @@
 
             </div>
         </c:forEach>
+
+        <h2>Edit your profile</h2>
+        <form action="/profile" method="post">
+            <label for="newUsername">New Username: </label>
+            <input name="newUsername" id="newUsername" value="${user.username}">
+            <label for="newPassword">New Password: </label>
+            <input name="newPassword" id="newPassword" value="${user.password}">
+            <input name="userId" id="userId" value="${user.id}" hidden>
+            <input type="submit" value="Submit">
+        </form>
 
 
     </div>
