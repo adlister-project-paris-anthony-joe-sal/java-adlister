@@ -11,21 +11,40 @@
     <div class="container">
         <h1>Welcome, ${user.username}!</h1>
 
+
+
+        <div style="text-align: right">
+            <jsp:include page="/WEB-INF/partials/filter.jsp" />
+        </div>
+
         <h1>Here are all of YOUR ads!</h1>
+
 
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
+<<<<<<< HEAD
                 <h2><a href="/adDetails?adId=${ad.id}">${ad.title}</a></h2>
                 <p>${ad.description}</p>
+=======
+
+
+                <h2> ${ad.title}</h2>
+                <h3> ${ad.description}</h3>
+                <p >${ad.userId}</p>
+
+>>>>>>> 9306c3c0014811c88d09182389fff286f6a3d8f1
 
                 <form action="/delete" method="POST">
                     <input type="hidden" name="deleteAd" id="deleteAd" value="${ad.id}" />
-                    <button  class="btn btn-danger">Delete</button>
+                    <button  class="btn btn-danger" type="submit">Delete</button>
                 </form>
-                <form method="GET" action="/edit" >
-                    <button type="submit">Edit this ad</button>
-                    <input type="hidden" value="${ad.id}" name="editAd" id="editAd">
+                <form method="GET" action="/editAd" >
+                    <input type="hidden" value="${ad.id}" name="ad-id" id="ad-id">
+                    <button class="btn btn-success" type="submit">Edit this ad</button>
                 </form>
+
+
+
 
             </div>
         </c:forEach>
