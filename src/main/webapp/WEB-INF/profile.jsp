@@ -38,7 +38,7 @@
             <label for="newPassword">New Password: </label>
             <input name="newPassword" id="newPassword" value="${user.password}">
             <input name="userId" id="userId" value="${user.id}" hidden>
-            <input type="submit" value="Submit that shit">
+            <input type="submit" value="Submit">
         </form>
 
 
