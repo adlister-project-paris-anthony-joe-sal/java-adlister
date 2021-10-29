@@ -14,4 +14,7 @@ public interface Ads {
     void edit(int id, Ad newAd);
     List<Ad> sortAds();
     List<Ad> sortAdsAscending();
+
+    List<Ad> allUserAds(long currentUserId);
+    Ad getAdDetails(long id);
 }
