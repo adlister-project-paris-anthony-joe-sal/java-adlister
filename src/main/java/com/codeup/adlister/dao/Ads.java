@@ -13,7 +13,7 @@ public interface Ads {
     Ad attainAdId(long id);
 
     void delete(String id);
-    void edit(long id, Ad newAd);
+    void edit( Ad newAd);
     List<Ad> sortAds();
     List<Ad> sortAdsAscending();
 }
