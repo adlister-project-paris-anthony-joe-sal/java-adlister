@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
@@ -30,6 +31,8 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
+//        HttpSession session = request.getSession();
+
         if (user == null) {
             response.sendRedirect("/login");
             return;
@@ -39,6 +42,7 @@ public class LoginServlet extends HttpServlet {
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
+//            request.getSession().setAttribute("userId", user.getId());
             response.sendRedirect("/profile");
             System.out.println(Password.hash(password));
         } else {

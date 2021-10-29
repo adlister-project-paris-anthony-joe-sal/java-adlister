@@ -10,8 +10,10 @@ public interface Ads {
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
 
+    Ad attainAdId(long id);
+
     void delete(String id);
-    void edit(int id, Ad newAd);
+    void edit( Ad newAd);
     List<Ad> sortAds();
     List<Ad> sortAdsAscending();
 }
