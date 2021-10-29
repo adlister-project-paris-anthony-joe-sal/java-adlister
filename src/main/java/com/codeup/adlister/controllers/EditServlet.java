@@ -11,31 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 @WebServlet("/edit")
-public class EditServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        int currAd = Integer.parseInt(request.getParameter("editAd"));
-        session.setAttribute("currentAd", currAd);
-        request.getRequestDispatcher("/WEB-INF/ads/edit.jsp").forward(request, response);
-
-
-    }
-
-
-
-    @Override
+public class EditServlet extends HttpServlet{
+   @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int currAd = (int) session.getAttribute("currentAd");
-        String newTitle = request.getParameter("newTitle");
-        String newDescription = request.getParameter("newDescription");
+        //int currAd = (int) session.getAttribute("ad");
+
+        String newTitle = request.getParameter("title");
+        String newDescription = request.getParameter("description");
         Timestamp date_created = (Timestamp) session.getAttribute("date_created");
-        String newCategory = request.getParameter("newCategory");
+       System.out.println(date_created);
+        String newCategory = request.getParameter("category");
+       System.out.println(newCategory);
         long currentUserId = (long) session.getAttribute("userId");
+       System.out.println(currentUserId);
+
+
         Ad newAd = new Ad(
                 currentUserId,
                 newTitle,
@@ -43,8 +37,9 @@ public class EditServlet extends HttpServlet {
                 date_created,
                 newCategory
         );
-        DaoFactory.getAdsDao().edit(currAd, newAd);
-        session.removeAttribute("currentAd");
+        long adId = newAd.getId();
+        DaoFactory.getAdsDao().edit(adId, newAd);
+        session.removeAttribute("ad");
         response.sendRedirect("/ads");
     }
 }
