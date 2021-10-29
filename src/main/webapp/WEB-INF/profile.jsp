@@ -18,19 +18,24 @@
 
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
-                <h2>${ad.title}</h2>
-                <h3>${ad.userId}</h3>
-                <p>${ad.description}</p>
-                <p>${ad.date_created}</p>
+
+
+                <h2> ${ad.title}</h2>
+                <h3> ${ad.description}</h3>
+                <p >${ad.userId}</p>
+
 
                 <form action="/delete" method="POST">
                     <input type="hidden" name="deleteAd" id="deleteAd" value="${ad.id}" />
-                    <button  class="btn btn-danger">Delete</button>
+                    <button  class="btn btn-danger" type="submit">Delete</button>
                 </form>
-                <form method="GET" action="/edit" >
-                    <button type="submit">Edit this ad</button>
-                    <input type="hidden" value="${ad.id}" name="editAd" id="editAd">
+                <form method="GET" action="/editAd" >
+                    <input type="hidden" value="${ad.id}" name="ad-id" id="ad-id">
+                    <button class="btn btn-success" type="submit">Edit this ad</button>
                 </form>
+
+
+
 
             </div>
         </c:forEach>
