@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" name="password" class="form-control" type="password" placeholder="Be sure to make your password 7 characters or more">
+            <input id="password" name="password" class="form-control" type="password"  placeholder="Be sure to make your password 7 characters or more" required minlength="7">
         </div>
         <div class="form-group">
             <label for="confirm_password">Confirm Password</label>
