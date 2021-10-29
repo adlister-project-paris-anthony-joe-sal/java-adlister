@@ -31,10 +31,10 @@
                 <%--        <label for="newDate_created">Date</label>--%>
                 <%--        <input type="text" id="newDate_created" name="date_created" value="${ad.date_created}">--%>
                 <%--    </div>--%>
-            <div>
-                <label for="newCategory">Category</label>
-                <input type="text" id="newCategory" name="category" value="${ad.category}">
-            </div>
+                <%--            <div>--%>
+                <%--                <label for="newCategory" > Category</label>--%>
+                <%--                <input type="text" id="newCategory" name="category" value="${ad.category}">--%>
+                <%--            </div>--%>
             <input name="ad-id" id="ad-id" value="${ad.id}" type="hidden">
             <input type="submit" class="btn btn-block btn-primary">
         </form>
@@ -45,3 +45,16 @@
 
 </body>
 </html>
+
+
+<%--<select class="custom-select" >--%>
+<%--    <option value="${ad.vehicles}">vehicles</option>--%>
+<%--    <option value="${ad.services}">services</option>--%>
+<%--    <option value="${ad.for_rent}">for_rent</option>--%>
+<%--    <option value="${ad.real_estate}">real_estate</option>--%>
+<%--    <option value="${ad.pets}">pets</option>--%>
+<%--    <option value="${ad.community}">community</option>--%>
+<%--    <option value="${ad.jobs}">jobs</option>--%>
+<%--    <option value="${ad.personals}">personals</option>--%>
+<%--    <option value="${ad.items_for_sale}">items_for_sale</option>--%>
+<%--</select>--%>
