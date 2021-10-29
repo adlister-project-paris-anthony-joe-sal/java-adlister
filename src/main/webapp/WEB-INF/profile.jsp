@@ -12,12 +12,16 @@
         <h1>Welcome, ${user.username}!</h1>
 
         <h1>Here Are all the ads!</h1>
+        <div style="text-align: right">
+            <jsp:include page="/WEB-INF/partials/filter.jsp" />
+        </div>
 
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
                 <h2>${ad.title}</h2>
                 <h3>${ad.userId}</h3>
                 <p>${ad.description}</p>
+                <p>${ad.date_created}</p>
 
                 <form action="/delete" method="POST">
                     <input type="hidden" name="deleteAd" id="deleteAd" value="${ad.id}" />

@@ -28,6 +28,20 @@ public class ViewProfileServlet extends HttpServlet {
 
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String sortOption = request.getParameter("date");
+        if (sortOption.equalsIgnoreCase("oldToNew")) {
+            request.setAttribute("ads", DaoFactory.getAdsDao().sortAds());
+            request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        } else if (sortOption.equalsIgnoreCase("newToOld")) {
+            System.out.println("This is an else if");
+            request.setAttribute("ads", DaoFactory.getAdsDao().sortAdsAscending());
+            request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        }
+//        System.out.println(sortOption);
+//        System.out.println("You clicked the sort button");
+    }
+
 
 
 

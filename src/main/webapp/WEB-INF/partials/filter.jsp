@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/ads" method="post">
+<form method="post">
     <label for="date">filter by:</label>
     <select name="date" id="date">
     <option value="newToOld">Newest to Oldest</option>
