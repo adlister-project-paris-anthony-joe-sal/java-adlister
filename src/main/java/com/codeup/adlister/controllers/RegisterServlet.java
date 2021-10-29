@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
                 || password.isEmpty()
                 || (! password.equals(passwordConfirmation));
 
-        if (inputHasErrors) {
+        if (inputHasErrors || username.length() <= 7 ) {
             response.sendRedirect("/register");
             return;
         }
