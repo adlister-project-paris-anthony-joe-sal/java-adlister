@@ -20,9 +20,6 @@ public class EditServlet extends HttpServlet{
         HttpSession session = request.getSession();
 
 
-
-
-
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         Timestamp date_created = (Timestamp) session.getAttribute("date_created");   /// assign each parameter to their data types respectively
@@ -35,12 +32,21 @@ public class EditServlet extends HttpServlet{
        Ad ad = DaoFactory.getAdsDao().attainAdId(adId); // Use DAOFactory to find ad by id & set new values to the ad
        ad.setTitle(title);
        ad.setDescription(description);
+       boolean adInputIsEmpty =
+       title.isEmpty()
+       || description.isEmpty();
+
+       if (adInputIsEmpty || title == null || description == null){
+           response.sendRedirect("/edit");
+           return;
+       }
     //ad.setDate(date_created);
    //  ad.setCategory(category);
 
        System.out.println(ad);
        DaoFactory.getAdsDao().edit( ad); // edit the ad using the edit() which uses an UPDATE query to return the rows affected
        response.sendRedirect("/ads");
+
 
        //        long currentUserId = (long) session.getAttribute("userId");
        //int currAd = (int) session.getAttribute("ad");
