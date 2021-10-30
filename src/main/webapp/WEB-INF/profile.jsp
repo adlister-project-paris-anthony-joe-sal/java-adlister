@@ -22,17 +22,9 @@
 
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
-<<<<<<< HEAD
                 <h2><a href="/adDetails?adId=${ad.id}">${ad.title}</a></h2>
-                <p>${ad.description}</p>
-=======
-
-
-                <h2> ${ad.title}</h2>
                 <h3> ${ad.description}</h3>
                 <p >${ad.userId}</p>
-
->>>>>>> 9306c3c0014811c88d09182389fff286f6a3d8f1
 
                 <form action="/delete" method="POST">
                     <input type="hidden" name="deleteAd" id="deleteAd" value="${ad.id}" />
@@ -42,10 +34,6 @@
                     <input type="hidden" value="${ad.id}" name="ad-id" id="ad-id">
                     <button class="btn btn-success" type="submit">Edit this ad</button>
                 </form>
-
-
-
-
             </div>
         </c:forEach>
 
