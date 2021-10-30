@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 
 
 //      NEED TO IMPLEMENT
-        // username should not be able to registered twice
+        // username should not be able to be registered twice
         // validate input
         boolean inputHasErrors = username.isEmpty()
                 || email.isEmpty()

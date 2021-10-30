@@ -17,29 +17,20 @@
 
     <h1>Update Ad</h1>
     <h1>Welcome, ${user.username}! Edit your ad below: </h1>
-    <c:forEach var = "ad" items="${ads}">
-        <form method="POST" action="/edit">
+
+
+        <form method="POST" action="/editAd">
             <div>
                 <label  for="newTitle">Title</label>
-                <input type="text" id="newTitle" name="title" value="${ad.title}">
+                <input type="text" id="newTitle" name="title" value="${myAd.title}">
             </div>
             <div>
                 <label for="newDescription">Description</label>
-                <input type="text" id="newDescription" name="description" value="${ad.description}">
+                <input type="text" id="newDescription" name="description" value="${myAd.description}">
+                <input type="hidden" name="adId" value="${myAd.id}">
             </div>
-                <%--    <div>--%>
-                <%--        <label for="newDate_created">Date</label>--%>
-                        <input type="hidden" id="newDate_created" name="date_created" value="${ad.date_created}">
-                <%--    </div>--%>
-                <%--            <div>--%>
-                <%--                <label for="newCategory" > Category</label>--%>
-                <%--                <input type="text" id="newCategory" name="category" value="${ad.category}">--%>
-                <%--            </div>--%>
-            <input name="ad-id" id="ad-id" value="${ad.id}" type="hidden">
             <input type="submit" class="btn btn-block btn-primary">
         </form>
-</c:forEach>
-
 
 
 
