@@ -27,38 +27,27 @@ public class ViewProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        SORT BY DATE CREATED FEATURE
         if (request.getParameter("filter") != null){
-
-        String sortOption = request.getParameter("date");
-        if (sortOption.equalsIgnoreCase("oldToNew")) {
-        request.setAttribute("ads", DaoFactory.getAdsDao().sortAds());
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
-        } else if(sortOption.equalsIgnoreCase("newToOld")) {
-
-        System.out.println("This is an else if");
-        request.setAttribute("ads", DaoFactory.getAdsDao().sortAdsAscending());
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+            String sortOption = request.getParameter("date");
+            if (sortOption.equalsIgnoreCase("oldToNew")) {
+                request.setAttribute("ads", DaoFactory.getAdsDao().sortAds());
+                request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+            } else if(sortOption.equalsIgnoreCase("newToOld")) {
+                request.setAttribute("ads", DaoFactory.getAdsDao().sortAdsAscending());
+                request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+            }
         }
-        } else if(request.getParameter("userEdit") != null){
-
-        String newUsername = request.getParameter("newUsername");
-        String newPassword = request.getParameter("newPassword");
-        long userId = Long.parseLong(request.getParameter("userId"));
-        DaoFactory.getUsersDao().editProfile(newUsername, newPassword, userId);
-        User changedUser = DaoFactory.getUsersDao().findByUsername(newUsername);
-        request.getSession().setAttribute("user", changedUser);
-        request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
-
+//        EDIT USER PROFILE DETAILS FEATURE
+        else if(request.getParameter("userEdit") != null){
+            String newUsername = request.getParameter("newUsername");
+            String newPassword = request.getParameter("newPassword");
+            long userId = Long.parseLong(request.getParameter("userId"));
+            DaoFactory.getUsersDao().editProfile(newUsername, newPassword, userId);
+            User changedUser = DaoFactory.getUsersDao().findByUsername(newUsername);
+            request.getSession().setAttribute("user", changedUser);
+            request.setAttribute("ads", DaoFactory.getAdsDao().allUserAds(userId));
+            request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
         }
-
-
     }
-//        System.out.println(sortOption);
-//        System.out.println("You clicked the sort button");
-
-
-
-
-
 }

@@ -37,15 +37,17 @@
             </div>
         </c:forEach>
 
-        <h2>Edit your profile</h2>
-        <form action="/profile" method="post">
-            <label for="newUsername">New Username: </label>
-            <input name="newUsername" id="newUsername" value="${user.username}">
-            <label for="newPassword">New Password: </label>
-            <input name="newPassword" id="newPassword" value="${user.password}">
-            <input name="userId" id="userId" value="${user.id}" type="hidden">
-            <input type="submit" value="Submit" name="userEdit">
-        </form>
+        <div>
+            <h2>Edit your profile</h2>
+            <form action="/profile" method="post">
+                <label for="newUsername">New Username: </label>
+                <input name="newUsername" id="newUsername" value="${user.username}">
+                <label for="newPassword">New Password: </label>
+                <input name="newPassword" id="newPassword" value="${user.password}">
+                <input name="userId" id="userId" value="${user.id}" type="hidden">
+                <input type="submit" value="Submit" name="userEdit">
+            </form>
+        </div>
 
 
     </div>
