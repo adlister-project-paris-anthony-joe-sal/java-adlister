@@ -33,6 +33,7 @@ public class RegisterServlet extends HttpServlet {
 //       User existingUser = DaoFactory.getUsersDao().findByUsername(username);
 
 
+
 //      NEED TO IMPLEMENT
         // username should not be able to registered twice
         // validate input
