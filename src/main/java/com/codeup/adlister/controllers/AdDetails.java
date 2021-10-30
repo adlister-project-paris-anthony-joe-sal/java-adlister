@@ -19,4 +19,8 @@ public class AdDetails extends HttpServlet {
         request.setAttribute("myAd", myAd);
         request.getRequestDispatcher("/WEB-INF/ads/adDetails.jsp").forward(request, response);
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
 }
