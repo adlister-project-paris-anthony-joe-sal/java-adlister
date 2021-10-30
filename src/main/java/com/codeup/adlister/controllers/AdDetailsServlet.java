@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/adDetails")
-public class AdDetails extends HttpServlet {
+public class AdDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long adId = Long.parseLong(request.getParameter("adId"));
         request.setAttribute("adId", adId);
         Ad myAd = DaoFactory.getAdsDao().getAdDetails(adId);
         request.setAttribute("myAd", myAd);
         request.getRequestDispatcher("/WEB-INF/ads/adDetails.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

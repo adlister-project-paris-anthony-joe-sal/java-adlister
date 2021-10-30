@@ -13,9 +13,11 @@ public interface Ads {
     Ad attainAdId(long id);
 
     void delete(String id);
-    void edit( Ad newAd);
+    void edit(String title, String description, Long adId);
     List<Ad> sortAds();
+    List<Ad> sortAds(long id);
     List<Ad> sortAdsAscending();
+    List<Ad> sortAdsAscending(long id);
 
     List<Ad> allUserAds(long currentUserId);
     Ad getAdDetails(long id);
