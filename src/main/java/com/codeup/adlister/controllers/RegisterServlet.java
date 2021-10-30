@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
@@ -31,18 +30,18 @@ public class RegisterServlet extends HttpServlet {
         long phone_number = Long.parseLong(request.getParameter("phone_number"));
 
 
-       User existingUser = DaoFactory.getUsersDao().findByUsername(username);
+//       User existingUser = DaoFactory.getUsersDao().findByUsername(username);
 
-       if(username =)
 
+//      NEED TO IMPLEMENT
+        // username should not be able to registered twice
         // validate input
         boolean inputHasErrors = username.isEmpty()
                 || email.isEmpty()
-                ||existingUser.
                 || password.isEmpty()
                 || (! password.equals(passwordConfirmation));
 
-        if (inputHasErrors || username.length() <= 7) {
+        if (inputHasErrors || password.length() <= 7) {
             response.sendRedirect("/register");
             return;
         }

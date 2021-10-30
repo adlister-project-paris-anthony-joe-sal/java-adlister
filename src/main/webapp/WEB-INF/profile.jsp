@@ -26,7 +26,7 @@
 
                 <h2> ${ad.title}</h2>
                 <h3> ${ad.description}</h3>
-                <p >${ad.userId}</p>
+                <p>${ad.date_created}</p>
 
 
                 <form action="/delete" method="POST">
@@ -50,8 +50,8 @@
             <input name="newUsername" id="newUsername" value="${user.username}">
             <label for="newPassword">New Password: </label>
             <input name="newPassword" id="newPassword" value="${user.password}">
-            <input name="userId" id="userId" value="${user.id}" hidden>
-            <input type="submit" value="Submit">
+            <input name="userId" id="userId" value="${user.id}" type="hidden">
+            <input type="submit" value="Submit" name="userEdit">
         </form>
 
 
