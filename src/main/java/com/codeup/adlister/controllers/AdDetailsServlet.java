@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/adDetails")
-public class AdDetails extends HttpServlet {
+public class AdDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long adId = Long.parseLong(request.getParameter("adId"));
         request.setAttribute("adId", adId);

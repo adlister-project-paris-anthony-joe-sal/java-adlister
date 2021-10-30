@@ -28,24 +28,18 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
         long zip_code = Long.parseLong(request.getParameter("zip_code"));
         long phone_number = Long.parseLong(request.getParameter("phone_number"));
-
-
-//       User existingUser = DaoFactory.getUsersDao().findByUsername(username);
-
-
-
 //      NEED TO IMPLEMENT
         // username should not be able to registered twice
         // validate input
-        boolean inputHasErrors = username.isEmpty()
-                || email.isEmpty()
-                || password.isEmpty()
-                || (! password.equals(passwordConfirmation));
-
-        if (inputHasErrors || password.length() <= 7) {
-            response.sendRedirect("/register");
-            return;
-        }
+//        boolean inputHasErrors = username.isEmpty()
+//                || email.isEmpty()
+//                || password.isEmpty()
+//                || (! password.equals(passwordConfirmation));
+//
+//        if (inputHasErrors || password.length() <= 7) {
+//            response.sendRedirect("/register");
+//            return;
+//        }
 
         // create and save a new user
         User user = new User(username, email, password, zip_code, phone_number);

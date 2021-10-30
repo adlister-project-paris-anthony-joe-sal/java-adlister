@@ -1,4 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <jsp:include page="partials/head.jsp">
@@ -12,11 +14,11 @@
     <form action="/register" method="post">
         <div class="form-group">
             <label for="username">Username</label>
-            <input id="username" name="username" class="form-control" type="text">
+            <input id="username" name="username" class="form-control" type="text" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" class="form-control" type="text">
+            <input id="email" name="email" class="form-control" type="email">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -28,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="zip_code">Zip Code</label>
-            <input id="zip_code" name="zip_code" class="form-control" type="text">
+            <input id="zip_code" name="zip_code" class="form-control" type="number">
         </div>
         <div class="form-group">
             <label for="phone_number">Phone Number</label>
