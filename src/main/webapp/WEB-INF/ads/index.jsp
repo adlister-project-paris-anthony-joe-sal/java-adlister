@@ -10,31 +10,15 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <h1>Here are all the ads!</h1>
     <div style="text-align: right">
         <jsp:include page="/WEB-INF/partials/filter.jsp" />
     </div>
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
-
-<%--            <c:if test="${sessionScope.userId != null}">--%>
-<%--
-
-        <form action="/ads/delete" method="POST">
-                <input type="hidden" name="id" value="${ad.id}" />
-                <button  class="btn btn-danger">Delete</button>
-            </form>
-
-
-                    <form method="GET" action="<c:url value="/edit"/>">--%>
-<%--                    <button type="submit">Edit this ad</button>--%>
-<%--                    <input type="hidden" value="${ad.id}" name="editAd" id="editAd">--%>
-<%--                </form>--%>
-<%--            </c:if>--%>
-            <h2>${ad.title}</h2>
-            <h3>${ad.userId}</h3>
+            <h2><a href="/adDetails?adId=${ad.id}">${ad.title}</a></h2>
             <p>${ad.description}</p>
-            <p>${ad.date_created}</p>
+            <p>Date Created: ${ad.date_created}</p>
         </div>
     </c:forEach>
 </div>

@@ -22,7 +22,6 @@ public class AdsIndexServlet extends HttpServlet {
             request.setAttribute("ads", DaoFactory.getAdsDao().sortAds());
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
         } else if (sortOption.equalsIgnoreCase("newToOld")) {
-            System.out.println("This is an else if");
             request.setAttribute("ads", DaoFactory.getAdsDao().sortAdsAscending());
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
         }

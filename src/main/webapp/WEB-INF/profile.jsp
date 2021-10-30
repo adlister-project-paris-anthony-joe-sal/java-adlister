@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile" />
@@ -37,15 +38,17 @@
             </div>
         </c:forEach>
 
-        <h2>Edit your profile</h2>
-        <form action="/profile" method="post">
-            <label for="newUsername">New Username: </label>
-            <input name="newUsername" id="newUsername" value="${user.username}">
-            <label for="newPassword">New Password: </label>
-            <input name="newPassword" id="newPassword" value="${user.password}">
-            <input name="userId" id="userId" value="${user.id}" type="hidden">
-            <input type="submit" value="Submit" name="userEdit">
-        </form>
+        <div>
+            <h2>Edit your profile</h2>
+            <form action="/profile" method="post">
+                <label for="newUsername">New Username: </label>
+                <input name="newUsername" id="newUsername" value="${user.username}">
+                <label for="newPassword">New Password: </label>
+                <input name="newPassword" id="newPassword" value="${user.password}">
+                <input name="userId" id="userId" value="${user.id}" type="hidden">
+                <input type="submit" value="Submit" name="userEdit">
+            </form>
+        </div>
 
 
     </div>
