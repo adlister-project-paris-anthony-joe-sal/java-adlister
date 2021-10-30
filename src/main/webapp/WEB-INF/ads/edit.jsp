@@ -29,7 +29,7 @@
             </div>
                 <%--    <div>--%>
                 <%--        <label for="newDate_created">Date</label>--%>
-                <%--        <input type="text" id="newDate_created" name="date_created" value="${ad.date_created}">--%>
+                        <input type="hidden" id="newDate_created" name="date_created" value="${ad.date_created}">
                 <%--    </div>--%>
             <div>
                 <label for="newCategory">Category</label>
