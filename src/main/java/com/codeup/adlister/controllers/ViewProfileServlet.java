@@ -28,13 +28,15 @@ public class ViewProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        SORT BY DATE CREATED FEATURE
+        User currentUser = (User) request.getSession().getAttribute("user");
+        long currentUserId = currentUser.getId();
         if (request.getParameter("filter") != null){
             String sortOption = request.getParameter("date");
             if (sortOption.equalsIgnoreCase("oldToNew")) {
-                request.setAttribute("ads", DaoFactory.getAdsDao().sortAds());
+                request.setAttribute("ads", DaoFactory.getAdsDao().sortAds(currentUserId));
                 request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
             } else if(sortOption.equalsIgnoreCase("newToOld")) {
-                request.setAttribute("ads", DaoFactory.getAdsDao().sortAdsAscending());
+                request.setAttribute("ads", DaoFactory.getAdsDao().sortAdsAscending(currentUserId));
                 request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
             }
         }
