@@ -20,9 +20,8 @@ public class ViewProfileServlet extends HttpServlet {
 
         //get current User
         User currentUser = (User) request.getSession().getAttribute("user");
-
-
-        request.setAttribute("ads", DaoFactory.getAdsDao().all());
+        long currentUserId = currentUser.getId();
+        request.setAttribute("ads", DaoFactory.getAdsDao().allUserAds(currentUserId));
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
 
@@ -37,15 +36,11 @@ public class ViewProfileServlet extends HttpServlet {
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
 
-    String sortOption = request.getParameter("date");
-        if(sortOption.equalsIgnoreCase("oldToNew"))
-
-    {
+        String sortOption = request.getParameter("date");
+        if (sortOption.equalsIgnoreCase("oldToNew")) {
         request.setAttribute("ads", DaoFactory.getAdsDao().sortAds());
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
-    } else if(sortOption.equalsIgnoreCase("newToOld"))
-
-    {
+        } else if(sortOption.equalsIgnoreCase("newToOld")) {
         System.out.println("This is an else if");
         request.setAttribute("ads", DaoFactory.getAdsDao().sortAdsAscending());
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
