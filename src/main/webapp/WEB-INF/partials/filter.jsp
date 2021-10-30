@@ -14,11 +14,12 @@
 <form method="post">
     <label for="date">filter by:</label>
     <select name="date" id="date">
+    <option></option>
     <option value="newToOld">Newest to Oldest</option>
     <option value="oldToNew">Oldest to Newest</option>
     </select>
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="filter" name= "filter">
 
 </form>
 </body>
