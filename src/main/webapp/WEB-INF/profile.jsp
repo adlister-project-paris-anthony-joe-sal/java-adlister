@@ -31,8 +31,8 @@
                     <input type="hidden" name="deleteAd" id="deleteAd" value="${ad.id}" />
                     <button  class="btn btn-danger" type="submit">Delete</button>
                 </form>
-                <form method="GET" action="/editAd" >
-                    <input type="hidden" value="${ad.id}" name="ad-id" id="ad-id">
+                <form method="GET" action="/editAd?adId=${ad.id}" >
+                    <input type="hidden" value="${ad.id}" name="adId" id="ad-id">
                     <button class="btn btn-success" type="submit">Edit this ad</button>
                 </form>
             </div>
