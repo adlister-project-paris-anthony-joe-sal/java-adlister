@@ -20,32 +20,32 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/profile");
             return;
         }
+
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
-//        HttpSession session = request.getSession();
 
-        if (user == null) {
-            response.sendRedirect("/login");
+        if(user == null) {
+            request.getSession().setAttribute("invalidAttempt", false);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             return;
         }
-
         boolean validAttempt = Password.check(user.getPassword(), Password.hash(password));
-
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/ads");
         } else {
+
             response.sendRedirect("/login");
-            System.out.println("loging failed");
+
         }
     }
 }
