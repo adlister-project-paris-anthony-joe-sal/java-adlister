@@ -27,7 +27,7 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
+            stmt = connection.prepareStatement("SELECT * FROM ads ORDER BY  date_created DESC ");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -38,7 +38,7 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> allUserAds(long id) {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = ?");
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = ? ORDER BY date_created DESC ");
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
@@ -133,9 +133,6 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
-
-
-
 
     @Override
     public void edit(String title, String description, Long adId) {
