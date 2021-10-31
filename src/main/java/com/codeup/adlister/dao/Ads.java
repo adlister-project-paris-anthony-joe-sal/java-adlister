@@ -21,4 +21,7 @@ public interface Ads {
 
     List<Ad> allUserAds(long currentUserId);
     Ad getAdDetails(long id);
+
+//added to search
+    List<Ad> search(String searchAd);
 }

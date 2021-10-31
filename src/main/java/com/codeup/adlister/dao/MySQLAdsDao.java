@@ -197,6 +197,31 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+//
+//added search function
+                    public List<Ad> search(String searchTerm) {
+                        String query = "SELECT * FROM ads JOIN users ON ads.user_id = users.id WHERE ads.title LIKE ? OR ads.description LIKE ?";
+                        try {
+                            PreparedStatement stmt = connection.prepareStatement(query);
+                            stmt.setString(1, "%" + searchTerm + "%");
+                            stmt.setString(2, "%" + searchTerm + "%");
+
+                            ResultSet rs = stmt.executeQuery();
+                            return createAdsWithUsersFromResults(rs);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    }
+
+                    private List<Ad> createAdsWithUsersFromResults(ResultSet rs) throws SQLException {
+                        List<Ad> ads = new ArrayList<>();
+                        while (rs.next()) {
+                            ads.add(extractAd(rs));
+                        }
+                        return ads;
+                    }
+
 }
 
 
