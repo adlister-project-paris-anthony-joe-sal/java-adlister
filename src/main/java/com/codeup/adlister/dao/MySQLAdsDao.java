@@ -197,7 +197,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-
+//
 //added search function
                     public List<Ad> search(String searchTerm) {
                         String query = "SELECT * FROM ads JOIN users ON ads.user_id = users.id WHERE ads.title LIKE ? OR ads.description LIKE ?";
