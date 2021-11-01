@@ -14,26 +14,22 @@
     </jsp:include>
 </head>
 <body>
-
-    <h1>Update Ad</h1>
-    <h1>Welcome, ${user.username}! Edit your ad below: </h1>
-
-
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+    <div class="container">
+        <h1>Welcome, ${user.username}! Edit your ad below: </h1>
         <form method="POST" action="/editAd">
             <div>
                 <label  for="newTitle">Title</label>
-                <input type="text" id="newTitle" name="title" value="${myAd.title}">
+                <input type="text" id="newTitle" name="title" value="${myAd.title}" required>
             </div>
             <div>
                 <label for="newDescription">Description</label>
-                <input type="text" id="newDescription" name="description" value="${myAd.description}">
+                <input type="text" id="newDescription" name="description" value="${myAd.description}" required>
                 <input type="hidden" name="adId" value="${myAd.id}">
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
-
-
-
+    </div>
 </body>
 </html>
 
