@@ -36,12 +36,12 @@ public class MySQLUsersDao implements Users {
     @Override
     public boolean validateUsername(String username) throws SQLException {
         boolean existingUser = false;
-        DriverManager.registerDriver(new Driver());
-        connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
-        );
+//        DriverManager.registerDriver(new Driver());
+//        connection = DriverManager.getConnection(
+//                config.getUrl(),
+//                config.getUser(),
+//                config.getPassword()
+//        );
         String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, username);
