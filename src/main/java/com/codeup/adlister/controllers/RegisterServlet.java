@@ -18,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
 
     }
@@ -33,13 +34,10 @@ public class RegisterServlet extends HttpServlet {
 //      NEED TO IMPLEMENT
         // username should not be able to be registered twice
         // validate input
-
         boolean inputHasErrors = username.isEmpty()
                 || email.isEmpty()
                 || password.isEmpty()
                 || (! password.equals(passwordConfirmation));
-
-
 
             try {
                 boolean existingUser = DaoFactory.getUsersDao().validateUsername(username);

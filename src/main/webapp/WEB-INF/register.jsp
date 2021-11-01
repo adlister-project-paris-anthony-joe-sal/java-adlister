@@ -17,7 +17,7 @@
         </c:if>
         <div class="form-group">
             <label for="username">Username</label>
-            <input id="username" name="username" class="form-control" type="text" required>
+            <input id="username" name="username" class="form-control" type="text" placeholder="username">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
