@@ -1,14 +1,11 @@
-
 package com.codeup.adlister.dao;
-
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.sql.*;
 
 public class MySQLUsersDao implements Users {
     private Connection connection;
+    private Config config = new Config();
 
     public MySQLUsersDao(Config config) {
         try {
@@ -34,6 +31,27 @@ public class MySQLUsersDao implements Users {
         } catch (SQLException e) {
             throw new RuntimeException("Error finding a user by username", e);
         }
+    }
+
+    @Override
+    public boolean validateUsername(String username) throws SQLException {
+        boolean existingUser = false;
+        DriverManager.registerDriver(new Driver());
+        connection = DriverManager.getConnection(
+                config.getUrl(),
+                config.getUser(),
+                config.getPassword()
+        );
+        String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                if (rs.getString("username").equals(username)){
+                    existingUser = true;
+                }
+            }
+            return existingUser;
     }
 
     public void editProfile(String username, String password, long id) {

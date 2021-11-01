@@ -27,7 +27,7 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
+            stmt = connection.prepareStatement("SELECT * FROM ads ORDER BY  date_created DESC ");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -38,7 +38,7 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> allUserAds(long id) {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = ?");
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = ? ORDER BY date_created DESC ");
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
@@ -134,9 +134,6 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
-
-
-
     @Override
     public void edit(String title, String description, Long adId) {
         try {
@@ -196,6 +193,31 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
+
+//
+//added search function
+                    public List<Ad> search(String searchTerm) {
+                        String query = "SELECT * FROM ads JOIN users ON ads.user_id = users.id WHERE ads.title LIKE ? OR ads.description LIKE ?";
+                        try {
+                            PreparedStatement stmt = connection.prepareStatement(query);
+                            stmt.setString(1, "%" + searchTerm + "%");
+                            stmt.setString(2, "%" + searchTerm + "%");
+
+                            ResultSet rs = stmt.executeQuery();
+                            return createAdsWithUsersFromResults(rs);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    }
+
+                    private List<Ad> createAdsWithUsersFromResults(ResultSet rs) throws SQLException {
+                        List<Ad> ads = new ArrayList<>();
+                        while (rs.next()) {
+                            ads.add(extractAd(rs));
+                        }
+                        return ads;
+                    }
 
 }
 
